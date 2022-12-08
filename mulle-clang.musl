@@ -1,0 +1,33 @@
+#! /bin/sh
+
+mulle_sdk="`dirname -- "$0" `"
+mulle_sdk="`dirname -- "${mulle_sdk}" `"
+
+# TODO: possibly always send linker flags, mask them with -Wl
+# turn of unused linker warning ?
+case "$*" in
+   *\.[cm]\ *|*\.[cm])
+   ;;
+
+   *)
+      libdir="${mulle_sdk}/lib"
+      exec mulle-clang \
+-static \
+-nostdlib \
+-Wl,-export-dynamic \
+-L "${libdir}" \
+"${libdir}/Scrt1.o" \
+"${libdir}/crti.o" \
+"$@" \
+-lc \
+"${libdir}/crtn.o"
+   ;;
+esac
+
+exec mulle-clang -D__MULLE_STATICALLY_LINKED__ \
+                 -D__MULLE_MUSL__ \
+                 ${flags} \
+                 -nostdinc \
+                 -static \
+                 -isysroot "${mulle_sdk}" \
+                 "$@"

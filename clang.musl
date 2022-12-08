@@ -9,7 +9,7 @@ case "$*" in
 
    *)
       libdir="${mulle_sdk}/lib"
-      exec mulle-clang \
+      exec clang \
 -static \
 -nostdlib \
 -Wl,-export-dynamic \
@@ -22,5 +22,10 @@ case "$*" in
    ;;
 esac
 
-includedir="${mulle_sdk}/include"
-exec mulle-clang -D__MULLE_STATICALLY_LINKED__ -nostdinc -static -isystem "${includedir}" "$@"
+exec mulle-clang -D__MULLE_STATICALLY_LINKED__ \
+                 -D__MULLE_MUSL__ \
+                 ${flags} \
+                 -nostdinc \
+                 -static \
+                 -isysroot "${mulle_sdk}" \
+                 "$@"
