@@ -5,3 +5,5 @@ version.old
 .gdb_history
 *.sublime-workspace
 .ackrc
+mulle-template-composer-*
+mulle-markdown-preview-*.html

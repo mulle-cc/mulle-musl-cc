@@ -2,7 +2,7 @@ cmake_minimum_required( VERSION 3.0)
 
 project( mulle-musl-cc NONE)
 
-set( PROJECT_VERSION "0.1.0")
+set( PROJECT_VERSION "0.1.1")
 
 set( SCRIPTS
    gcc.musl
