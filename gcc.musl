@@ -1,7 +1,8 @@
 #! /bin/sh
 
 
-mulle_sdk="`dirname -- "$0" `"
+mulle_sdk="`readlink -f "$0"`"
+mulle_sdk="`dirname -- "${mulle_sdk}" `"
 mulle_sdk="`dirname -- "${mulle_sdk}" `"
 
 flags="-static -D__MULLE_STATICALLY_LINKED__"

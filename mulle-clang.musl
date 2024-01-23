@@ -1,6 +1,7 @@
 #! /bin/sh
 
-mulle_sdk="`dirname -- "$0" `"
+mulle_sdk="`readlink -f "$0"`"
+mulle_sdk="`dirname -- "${mulle_sdk}" `"
 mulle_sdk="`dirname -- "${mulle_sdk}" `"
 
 # TODO: possibly always send linker flags, mask them with -Wl
